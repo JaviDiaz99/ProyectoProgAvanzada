@@ -25,7 +25,8 @@ public class    Principal implements Serializable {
                 case 6: listarPersonas(objProyecto); break;
                 case 7: listarTareas(objProyecto); break;
                 case 8: listarTareasSinPersonas(objProyecto); break;
-                case 9: almacenarDatos(objProyecto); salir=true; break;
+                case 9: cambiarCosteTarea(objProyecto); break;
+                case 12: almacenarDatos(objProyecto); salir=true; break;
                 default: System.out.println("Solo pueden ser números entre 1 y 9");
             }
         }
