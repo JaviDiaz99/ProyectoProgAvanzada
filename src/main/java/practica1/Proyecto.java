@@ -49,7 +49,7 @@ public class Proyecto implements Serializable {
         listaPersonas.put(objPersona.getClave(),objPersona);
     }
     public void añadirTarea( Tarea objTarea ) throws TareaRepetidaException, NoExisteNombreException,
-            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException {
+            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, CosteNegativoException {
         if (existeTarea(objTarea.getClave())) {
             throw new TareaRepetidaException(objTarea);
         }
@@ -64,6 +64,9 @@ public class Proyecto implements Serializable {
         }
         if ( objTarea.getFechaFinal().before(objTarea.getFechaInicio())) {
             throw new FechaInicialAntesFinalException();
+        }
+        if ( objTarea.getCoste() < 0 ) {
+            throw new CosteNegativoException();
         }
         Personas responsableLista = listaPersonas.get(objTarea.getResponsable().getClave());
         responsableLista.getLista().add(objTarea);
@@ -97,7 +100,7 @@ public class Proyecto implements Serializable {
         if ( objPersona == null ) {
             throw new PersonaEsNullException();
         }
-        if ( ! existeTarea(objTarea.getClave() )) {
+        if ( ! existeTarea(objTarea.getClave() )) { // creo que sobran porque si no existe siempre va a ser null
             throw new NoExisteTareaException(objTarea);
         }
         if ( ! existePersona(objPersona.getClave() )) {
@@ -107,5 +110,15 @@ public class Proyecto implements Serializable {
             throw new NoExistePersonaInscritaEnTareaException(objPersona, objTarea);
         }
         objTarea.getLista().remove(objPersona);
+    }
+    public void cambiarCosteTarea( Tarea objTarea, double coste ) throws TareaEsNullException,
+            CosteNegativoException {
+        if ( objTarea == null ) {
+            throw new TareaEsNullException();
+        }
+        if ( objTarea.getCoste() < 0 ) {
+            throw new CosteNegativoException();
+        }
+        objTarea.setCoste(coste);
     }
 }

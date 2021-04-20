@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Tarea implements Serializable, tieneLista, tieneClave {
-    private String título; // título no se repite, es la clave identificadora de la tarea.
+    private String titulo; // título no se repite, es la clave identificadora de la tarea.
     private String descripción;
     private Personas responsable;
     private int prioridad;
@@ -15,10 +15,27 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
     private boolean estaFinalizada;
     private String resultadoEsperado;
     private LinkedList<Personas> listaPersonas;
+    private double coste;
+    private Facturacion tipoFacturacion;
 
+    public Tarea(String titulo, String descripción, Personas responsable, int prioridad,
+                 Date fechaFinal, boolean estaFinalizada, String resultadoEsperado, Facturacion tipoFacturacion,
+                 double coste){
+        this.titulo = titulo;
+        this.descripción = descripción;
+        this.responsable = responsable;
+        this.prioridad = prioridad;
+        this.fechaInicio = new Date();
+        this.fechaFinal = fechaFinal;
+        this.estaFinalizada = estaFinalizada;
+        this.resultadoEsperado = resultadoEsperado;
+        this.listaPersonas = new LinkedList<>();
+        this.tipoFacturacion = tipoFacturacion;
+        this.coste = coste;
+    }
     @Override
     public String getClave() {
-        return título;
+        return titulo;
     }
     @Override
     public List getLista() {
@@ -33,22 +50,11 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
         this.estaFinalizada = true;
     }
 
-    public Tarea(String título, String descripción, Personas responsable, int prioridad,
-                 Date fechaFinal, boolean estaFinalizada, String resultadoEsperado){
-        this.título = título;
-        this.descripción = descripción;
-        this.responsable = responsable;
-        this.prioridad = prioridad;
-        this.fechaInicio = new Date();
-        this.fechaFinal = fechaFinal;
-        this.estaFinalizada = estaFinalizada;
-        this.resultadoEsperado = resultadoEsperado;
-        this.listaPersonas = new LinkedList<>();
-    }
-
     public String getDescripción() {
         return descripción;
     }
+
+    public double getCoste() { return coste; }
 
     public int getPrioridad() {
         return prioridad;
@@ -72,6 +78,18 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
 
     public String getResultadoEsperado() {
         return resultadoEsperado;
+    }
+
+    public void setFacturacion(Facturacion tipoFacturacion ) {
+        this.tipoFacturacion = tipoFacturacion;
+    }
+
+    public void setCoste( double cambiarCoste ) {
+        this.coste = cambiarCoste;
+    }
+
+    public double calcularCoste() {
+        return tipoFacturacion.calcularCoste(coste);
     }
 
     public String toString() {
