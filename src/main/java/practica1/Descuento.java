@@ -8,7 +8,7 @@ public class Descuento implements Facturacion {
         this.cantidadDescuento = cantidadDescuento;
     }
     @Override
-    public double calcularCoste( double cantidad ) {
+    public double calcularFacturacion( double cantidad ) {
         return cantidad - ( (cantidad * cantidadDescuento) / 100 );
     }
 }

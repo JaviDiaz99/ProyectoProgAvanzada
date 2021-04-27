@@ -29,13 +29,14 @@ class ProyectoTest {
 
     @Test
     void existeTarea() throws TareaRepetidaException, NoExisteNombreException, PersonaRepetidaException,
-            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException {
+            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         objProyecto.añadirPersona(objResponsable);
+        Facturacion objFacturacion = new ConsumoInterno();
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2022 - 1900,6 - 1
-                ,10),false,"Crear PC Gaming marca Razer");
+                ,10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         assertTrue( objProyecto.existeTarea("Reparar placa base"));
         assertFalse( objProyecto.existeTarea("Limpiar ventiladores"));
@@ -43,11 +44,12 @@ class ProyectoTest {
 
     @Test
     void añadirTarea() throws TareaRepetidaException, NoExisteNombreException, PersonaRepetidaException,
-            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException {
+            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
-                objResponsable,5,new Date(2022 - 1900,6 - 1,10),false,"Crear PC Gaming marca Razer");
+                objResponsable,5,new Date(2022 - 1900,6 - 1,10),false,
+                "Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirPersona(objResponsable);
         objProyecto.añadirTarea(objTarea);
         assertTrue( objProyecto.existeTarea("Reparar placa base"));
@@ -56,13 +58,14 @@ class ProyectoTest {
 
     @Test
     void marcarFinalizada() throws TareaRepetidaException, NoExisteNombreException, PersonaRepetidaException,
-            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException {
+            PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException,
+            CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         objProyecto.añadirPersona(objResponsable);
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2024 - 1900,4 - 1,
-                10),false,"Crear PC Gaming marca Razer");
+                10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         objProyecto.marcarFinalizada(objTarea);
         Tarea objTareaAñadida = objProyecto.getListaTareas().get("Reparar placa base");
@@ -72,14 +75,15 @@ class ProyectoTest {
 
     @Test
     void introducirPersonaEnTarea() throws ExistePersonaInscritaEnTareaException, NoExisteTareaException,
-            NoExisteNombreException, TareaRepetidaException, PersonaRepetidaException, PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException {
+            NoExisteNombreException, TareaRepetidaException, PersonaRepetidaException, PersonaEsNullException,
+            PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         objProyecto.añadirPersona(objResponsable);
         Personas objResponsable2 = new Personas("Maria","Maria@gmail.com");
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2022 - 1900,6 - 1,
-                10),false,"Crear PC Gaming marca Razer");
+                10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         objProyecto.introducirPersonaEnTarea(objResponsable,objTarea);
         assertTrue( objTarea.getLista().contains(objResponsable));
@@ -89,7 +93,8 @@ class ProyectoTest {
     @Test
     void eliminarPersonaEnTarea() throws TareaRepetidaException, PersonaRepetidaException,
             NoExistePersonaInscritaEnTareaException, NoExisteTareaException, NoExisteNombreException,
-            ExistePersonaInscritaEnTareaException, PersonaEsNullException, PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException {
+            ExistePersonaInscritaEnTareaException, PersonaEsNullException, PrioridadErroneaException,
+            FechaInicialAntesFinalException, TareaEsNullException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         Personas objResponsable2 = new Personas("Maria","Maria@gmail.com");
@@ -97,7 +102,7 @@ class ProyectoTest {
         objProyecto.añadirPersona(objResponsable2);
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2023 - 1900,6 - 1,
-                10),false,"Crear PC Gaming marca Razer");
+                10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         objProyecto.introducirPersonaEnTarea(objResponsable,objTarea);
         objProyecto.introducirPersonaEnTarea(objResponsable2,objTarea);
@@ -107,7 +112,8 @@ class ProyectoTest {
     }
     @Test
     void elementosConListaVacia() throws PersonaRepetidaException, PersonaEsNullException,
-            TareaRepetidaException, NoExisteNombreException, PrioridadErroneaException, FechaInicialAntesFinalException {
+            TareaRepetidaException, NoExisteNombreException, PrioridadErroneaException,
+            FechaInicialAntesFinalException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         Personas objResponsable2 = new Personas("Maria","Maria@gmail.com");
@@ -115,10 +121,10 @@ class ProyectoTest {
         objProyecto.añadirPersona(objResponsable2);
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2024 - 1900,6 - 1,
-                10),false,"Crear PC Gaming marca Razer");
+                10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         Tarea objTarea2 = new Tarea("Reparar ventiladores","RAM quemada",
                 objResponsable,5,new Date(2024 - 1900,6 - 1
-                ,10),false,"Crear PC Asus");
+                ,10),false,"Crear PC Asus",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         objProyecto.añadirTarea(objTarea2);
         LinkedList<Personas> listaAux = new LinkedList<>();
@@ -131,7 +137,8 @@ class ProyectoTest {
     @Test
     void tieneClave() throws PersonaRepetidaException, PersonaEsNullException,
             TareaRepetidaException, NoExisteNombreException, NoExisteTareaException,
-            ExistePersonaInscritaEnTareaException, PrioridadErroneaException, FechaInicialAntesFinalException, TareaEsNullException {
+            ExistePersonaInscritaEnTareaException, PrioridadErroneaException,
+            FechaInicialAntesFinalException, TareaEsNullException, CosteNegativoException {
         Proyecto objProyecto = new Proyecto("PC Gaming");
         Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
         Personas objResponsable2 = new Personas("Maria","Maria@gmail.com");
@@ -141,7 +148,7 @@ class ProyectoTest {
         objProyecto.añadirPersona(objResponsable3);
         Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
                 objResponsable,5,new Date(2024 - 1900,6 - 1
-                ,10),false,"Crear PC Gaming marca Razer");
+                ,10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
         objProyecto.añadirTarea(objTarea);
         objProyecto.introducirPersonaEnTarea(objResponsable,objTarea);
         objProyecto.introducirPersonaEnTarea(objResponsable2,objTarea);

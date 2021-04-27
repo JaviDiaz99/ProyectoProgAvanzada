@@ -54,6 +54,8 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
         return descripción;
     }
 
+    public Facturacion getTipoFacturacion() { return tipoFacturacion; }
+
     public double getCoste() { return coste; }
 
     public int getPrioridad() {
@@ -88,8 +90,8 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
         this.coste = cambiarCoste;
     }
 
-    public double calcularCoste() {
-        return tipoFacturacion.calcularCoste(coste);
+    public double calcularFacturacion() {
+        return tipoFacturacion.calcularFacturacion(coste);
     }
 
     public String toString() {

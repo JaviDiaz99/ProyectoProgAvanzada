@@ -7,7 +7,7 @@ public class Urgente implements Facturacion {
         this.sobrecoste = sobrecoste;
     }
     @Override
-    public double calcularCoste( double cantidad ) {
+    public double calcularFacturacion( double cantidad ) {
         return cantidad + sobrecoste;
     }
 }

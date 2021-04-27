@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class    Principal implements Serializable {
     private static final long serialVersionUID = -1065341850225848464L;
 
-    public static void main( String[] args ) throws PersonaRepetidaException, NoExisteNombreException,
-            NoExisteTareaException, ExistePersonaInscritaEnTareaException, TareaRepetidaException,
-            NoExisteNombreException, NoExisteTareaException, NoExistePersonaInscritaEnTareaException {
+    public static void main( String[] args ) throws PersonaRepetidaException, ExistePersonaInscritaEnTareaException,
+            TareaRepetidaException, NoExisteNombreException, NoExisteTareaException,
+            NoExistePersonaInscritaEnTareaException {
         Proyecto objProyecto = crearProyecto();
         boolean salir = false;
         int opcion;
@@ -26,6 +26,8 @@ public class    Principal implements Serializable {
                 case 7: listarTareas(objProyecto); break;
                 case 8: listarTareasSinPersonas(objProyecto); break;
                 case 9: cambiarCosteTarea(objProyecto); break;
+                case 10: cambiarTipoFacturacion(objProyecto); break;
+                case 11: calcularCosteProyecto(objProyecto); break;
                 case 12: almacenarDatos(objProyecto); salir=true; break;
                 default: System.out.println("Solo pueden ser números entre 1 y 9");
             }
@@ -75,7 +77,7 @@ public class    Principal implements Serializable {
                         } catch ( FileNotFoundException e ) {
                             System.out.println("No existe el nombre del fichero, vuelvalo a escribir:");
                             nombre = sn.next();
-                        }catch (IOException | ClassNotFoundException e ){
+                        } catch (IOException | ClassNotFoundException e ){
                             e.printStackTrace();
                         }
                     }
@@ -118,10 +120,10 @@ public class    Principal implements Serializable {
         String nombrePersona = sn.next();
         System.out.println("Introduce un número para elegir el tipo de facturación:\n1. Consumo interno\n2. Descuento" +
                 "\n3. Urgente ");
-        int opcion = sn.nextInt();
         boolean salir = false;
         Facturacion objFacturacion = null;
         while ( ! salir ) {
+            int opcion = sn.nextInt();
             switch ( opcion ) {
                 case 1:
                     objFacturacion = new ConsumoInterno();
@@ -320,5 +322,62 @@ public class    Principal implements Serializable {
                 coste = sn.nextDouble();
             }
         }
+    }
+    public static void cambiarTipoFacturacion( Proyecto objProyecto ) {
+        // Al indicar el nuevo tipo de facturación si es descuento o urgente tengo que indicarle el descuento o
+        // el sobrecoste
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Has seleccionado la opcion 10\n");
+        System.out.println("Introduce título de la tarea: ");
+        String titulo = sn.next();
+        Facturacion objFacturacion = elegirFacturacion();
+        boolean salir=false;
+        while ( ! salir ) {
+            try {
+                objProyecto.cambiarTipoFacturacionTarea(objProyecto.devolverTarea(titulo),objFacturacion);
+                salir = true;
+            } catch ( NoExisteTareaException | TareaEsNullException e ) {
+                System.out.println(e.getMessage());
+                System.out.println("Introduce un nuevo título de la tarea: ");
+                titulo = sn.next();
+            } catch ( MismoTipoFacturacionException e ) {
+                System.out.println(e.getMessage());
+                System.out.println("Introduce un nuevo tipo de facturación: ");
+                objFacturacion = elegirFacturacion();
+            }
+        }
+    }
+    public static Facturacion elegirFacturacion() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Introduce un número para elegir el tipo de facturación a cambiar:" +
+                "\n1. Consumo interno" +"\n2. Descuento" + "\n3. Urgente ");
+        double coste;
+        boolean salir = false;
+        Facturacion objFacturacion = null;
+        while ( ! salir ) {
+            int opcion = sn.nextInt();
+            switch ( opcion ) {
+                case 1:
+                    objFacturacion = new ConsumoInterno();
+                    salir = true;
+                    break;
+                case 2:
+                    System.out.println("Introduce un nuevo coste: ");
+                    coste = sn.nextDouble();
+                    objFacturacion = new Descuento(coste);
+                    salir=true;
+                case 3:
+                    System.out.println("Introduce un nuevo coste: ");
+                    coste = sn.nextDouble();
+                    objFacturacion = new Urgente(coste);
+                    salir=true;
+                default: System.out.println("Solo pueden ser números entre 1 y 3: ");
+            }
+        }
+        return objFacturacion;
+    }
+    public static void calcularCosteProyecto( Proyecto objProyecto ) {
+        System.out.println("Has seleccionado la opcion 11\n");
+        System.out.println(objProyecto.calcularCosteTotalProyecto());
     }
 }
