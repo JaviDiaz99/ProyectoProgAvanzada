@@ -1,6 +1,9 @@
 package practica1;
 
-public class Urgente implements Facturacion {
+import java.awt.*;
+import java.io.Serializable;
+
+public class Urgente implements Facturacion, Serializable {
     private double sobrecoste;
 
     public Urgente(double sobrecoste) {

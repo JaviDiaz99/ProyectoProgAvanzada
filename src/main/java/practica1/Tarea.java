@@ -102,6 +102,8 @@ public class Tarea implements Serializable, tieneLista, tieneClave {
             devolver += objPersona.getClave() + " ";
         }
         devolver += "\n" + "-Persona responsable: " + getResponsable().getClave() + "\n" +
+                "-Coste: " + getCoste() + "\n" +
+                "-Tipo facturación: " + getTipoFacturacion().getClass().getName().substring(10) + "\n" +
                 ( (getEstaFinalizada()) ? "-Está finalizada" : "-No está finalizada")  + "\n" +
                 "-Resultado esperado: " + getResultadoEsperado() + "\n";
         return devolver;

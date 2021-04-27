@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class    Principal implements Serializable {
+public class Principal implements Serializable {
     private static final long serialVersionUID = -1065341850225848464L;
 
-    public static void main( String[] args ) throws PersonaRepetidaException, ExistePersonaInscritaEnTareaException,
-            TareaRepetidaException, NoExisteNombreException, NoExisteTareaException,
-            NoExistePersonaInscritaEnTareaException {
+    public static void main( String[] args ) {
         Proyecto objProyecto = crearProyecto();
         boolean salir = false;
         int opcion;
@@ -34,6 +32,7 @@ public class    Principal implements Serializable {
         }
     }
     public static int elegirOption () {
+        System.out.println("\n");
         System.out.println("1. Dar alta personas");
         System.out.println("2. Dar alta tareas");
         System.out.println("3. Marcar tarea como finalizada");
@@ -115,9 +114,9 @@ public class    Principal implements Serializable {
         System.out.println("Introduce una descripción: ");
         String descripcion = sn.next();
         System.out.println("Introduce el nombre de la persona responsable: ");
-        double coste = sn.nextDouble();
-        System.out.println("Introduce el coste de la tarea: ");
         String nombrePersona = sn.next();
+        System.out.println("Introduce el coste de la tarea: ");
+        double coste = sn.nextDouble();
         System.out.println("Introduce un número para elegir el tipo de facturación:\n1. Consumo interno\n2. Descuento" +
                 "\n3. Urgente ");
         boolean salir = false;
@@ -130,11 +129,11 @@ public class    Principal implements Serializable {
                     salir = true;
                     break;
                 case 2:
-                    objFacturacion = new Descuento(coste);
+                    objFacturacion = new Descuento(introducirDescuentoOsobrecoste(opcion));
                     salir = true;
                     break;
                 case 3:
-                    objFacturacion = new Urgente(coste);
+                    objFacturacion = new Urgente(introducirDescuentoOsobrecoste(opcion));
                     salir=true;
                     break;
                 default: System.out.println("Solo pueden ser números entre 1 y 3: ");

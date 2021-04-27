@@ -124,14 +124,14 @@ public class Proyecto implements Serializable {
     }
     public void cambiarTipoFacturacionTarea( Tarea objTarea, Facturacion objFacturacion )
             throws MismoTipoFacturacionException, TareaEsNullException, NoExisteTareaException {
-        if ( objFacturacion.getClass() == objTarea.getTipoFacturacion().getClass()) {
-            throw new MismoTipoFacturacionException();
-        }
         if ( objTarea == null ) {
             throw new TareaEsNullException();
         }
         if ( ! existeTarea(objTarea.getClave() )) {
             throw new NoExisteTareaException(objTarea);
+        }
+        if ( objFacturacion.getClass() == objTarea.getTipoFacturacion().getClass()) {
+            throw new MismoTipoFacturacionException();
         }
         objTarea.setFacturacion(objFacturacion);
     }

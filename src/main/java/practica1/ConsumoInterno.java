@@ -1,6 +1,8 @@
 package practica1;
 
-public class ConsumoInterno implements Facturacion {
+import java.io.Serializable;
+
+public class ConsumoInterno implements Facturacion, Serializable {
     @Override
     public double calcularFacturacion(double cantidad) {
         return cantidad;

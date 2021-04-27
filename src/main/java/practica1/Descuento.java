@@ -1,6 +1,8 @@
 package practica1;
 
-public class Descuento implements Facturacion {
+import java.io.Serializable;
+
+public class Descuento implements Facturacion, Serializable {
     // poder cambiar coste de la tarea y el tipo de la facturación
     private double cantidadDescuento;
 
