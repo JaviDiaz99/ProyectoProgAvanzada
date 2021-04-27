@@ -210,6 +210,5 @@ class ProyectoTest {
         objProyecto.añadirTarea(objTarea3);
         assertTrue( objProyecto.calcularCosteTotalProyecto() == 200);
         assertFalse( objProyecto.calcularCosteTotalProyecto() == 400);
-
     }
 }
