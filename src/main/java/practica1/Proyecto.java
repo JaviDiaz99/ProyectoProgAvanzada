@@ -114,7 +114,6 @@ public class Proyecto implements Serializable {
     }
     public void cambiarCosteTarea( Tarea objTarea, double coste ) throws TareaEsNullException,
             CosteNegativoException {
-        // Si cambiamos coste y es urgente o consumo interno aplicar descuento o sobrecoste respectivamente?
         if ( objTarea == null ) {
             throw new TareaEsNullException();
         }
@@ -125,7 +124,6 @@ public class Proyecto implements Serializable {
     }
     public void cambiarTipoFacturacionTarea( Tarea objTarea, Facturacion objFacturacion )
             throws MismoTipoFacturacionException, TareaEsNullException, NoExisteTareaException {
-        // mirar si se puede utilizar CosteNegativoException
         if ( objFacturacion.getClass() == objTarea.getTipoFacturacion().getClass()) {
             throw new MismoTipoFacturacionException();
         }
@@ -137,12 +135,14 @@ public class Proyecto implements Serializable {
         }
         objTarea.setFacturacion(objFacturacion);
     }
-    public String calcularCosteTotalProyecto() {
+    public double calcularCosteTotalProyecto() {
         double costeTotal = 0;
         Collection<Tarea> lista = getListaTareas().values();
-        for ( Tarea objTarea : lista ) {
-            costeTotal += objTarea.calcularFacturacion();
+        if ( ! lista.isEmpty() ) {
+            for ( Tarea objTarea : lista ) {
+                costeTotal += objTarea.calcularFacturacion();
+            }
         }
-        return "El coste total del proyecto es " + costeTotal + "€";
+        return costeTotal;
     }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.logging.SocketHandler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -154,5 +155,61 @@ class ProyectoTest {
         objProyecto.introducirPersonaEnTarea(objResponsable2,objTarea);
         assertTrue( UtilidadesParaListas.sePuedeInsertar(objResponsable3,objTarea));
         assertFalse( UtilidadesParaListas.sePuedeInsertar(objResponsable,objTarea));
+    }
+    @Test
+    void cambiarCosteTarea() throws PersonaRepetidaException, FechaInicialAntesFinalException,
+            NoExisteNombreException, PrioridadErroneaException, CosteNegativoException,
+            TareaRepetidaException, PersonaEsNullException, TareaEsNullException {
+        Proyecto objProyecto = new Proyecto("PC Gaming");
+        Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
+        objProyecto.añadirPersona(objResponsable);
+        Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
+                objResponsable,5,new Date(2024 - 1900,6 - 1
+                ,10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
+        objProyecto.añadirTarea(objTarea);
+        objProyecto.cambiarCosteTarea(objTarea,100);
+        assertTrue( objTarea.getCoste() == 100 );
+        assertFalse( objTarea.getCoste() == 333 );
+    }
+    @Test
+    void cambiarTipoFacturacion() throws PersonaRepetidaException, FechaInicialAntesFinalException,
+            NoExisteNombreException, PrioridadErroneaException, CosteNegativoException,
+            TareaRepetidaException, PersonaEsNullException, NoExisteTareaException,
+            MismoTipoFacturacionException, TareaEsNullException {
+        Proyecto objProyecto = new Proyecto("PC Gaming");
+        Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
+        objProyecto.añadirPersona(objResponsable);
+        Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
+                objResponsable,5,new Date(2024 - 1900,6 - 1
+                ,10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
+        objProyecto.añadirTarea(objTarea);
+        objProyecto.cambiarTipoFacturacionTarea(objTarea, new Urgente(100));
+        assertTrue( objTarea.getTipoFacturacion().getClass().equals(new Urgente(100).getClass()));
+        assertFalse( objTarea.getTipoFacturacion().getClass().equals(new ConsumoInterno().getClass()));
+    }
+    @Test
+    void calcularCosteProyecto() throws FechaInicialAntesFinalException, NoExisteNombreException,
+            PrioridadErroneaException, CosteNegativoException, TareaRepetidaException,
+            PersonaEsNullException, PersonaRepetidaException {
+        Proyecto objProyecto = new Proyecto("PC Gaming");
+        Personas objResponsable = new Personas("Manuel","Manuel@gmail.com");
+        objProyecto.añadirPersona(objResponsable);
+        Tarea objTarea = new Tarea("Reparar placa base","No tocar ventilador",
+                objResponsable,5,new Date(2024 - 1900,6 - 1
+                ,10),false,"Crear PC Gaming marca Razer",new ConsumoInterno(),0);
+        Tarea objTarea2 = new Tarea("Reparar placa base 2","No tocar ventilador",
+                objResponsable,5,new Date(2024 - 1900,6 - 1
+                ,10),false,"Crear PC Gaming marca Razer",
+                new Descuento(10),100);
+        Tarea objTarea3 = new Tarea("Reparar placa base 3","No tocar ventilador",
+                objResponsable,5,new Date(2024 - 1900,6 - 1
+                ,10),false,"Crear PC Gaming marca Razer",
+                new Urgente(10),100);
+        objProyecto.añadirTarea(objTarea);
+        objProyecto.añadirTarea(objTarea2);
+        objProyecto.añadirTarea(objTarea3);
+        assertTrue( objProyecto.calcularCosteTotalProyecto() == 200);
+        assertFalse( objProyecto.calcularCosteTotalProyecto() == 400);
+
     }
 }
