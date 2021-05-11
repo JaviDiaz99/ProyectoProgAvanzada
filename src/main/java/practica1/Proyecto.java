@@ -1,10 +1,12 @@
 package practica1;
 
+import practica1.modelo.Modelo;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Proyecto implements Serializable {
+public class Proyecto implements Serializable, Modelo {
     private String nombre;
     private HashMap<String,Personas> listaPersonas; // Clave: nombre
     private HashMap<String,Tarea> listaTareas; // Clave: título
