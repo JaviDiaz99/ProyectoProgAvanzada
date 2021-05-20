@@ -18,7 +18,7 @@ public class VentanaCrearProyecto extends JFrame {
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
--
+
     private void crearComponentes() {
         Container contenedor = getContentPane();
         setLayout(new BoxLayout(contenedor,BoxLayout.PAGE_AXIS));
