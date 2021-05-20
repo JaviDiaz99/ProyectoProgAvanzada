@@ -22,19 +22,27 @@ public class VentanaInicial extends JFrame {
         boton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VentanaCrearProyecto ventanaNueva = new VentanaCrearProyecto();
-                // ventanaNueva.eje
-
+                new VentanaCrearProyecto().ejecuta();
+                dispose();
             }
         });
         panel.add(boton1);
-        panel.add(new JButton("Abrir proyecto"));
+        JButton boton2 = new JButton("Abrir proyecto");
+        boton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VentanaAbrirProyecto().ejecuta();
+                dispose();
+            }
+        });
+        panel.add(boton2);
         contenedor.add(panel);
     }
 
     private void CentrarFrame() {
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
         int width = pantalla.width;
