@@ -13,7 +13,7 @@ public class UtilidadesParaListas {
         }
         return devolver;
     }
-    //
+
     public static <E extends tieneClave & tieneLista> boolean sePuedeInsertar( E objNormal, E objConLista ) {
         List<E> lista = objConLista.getLista();
         for ( E obj : lista ) {
