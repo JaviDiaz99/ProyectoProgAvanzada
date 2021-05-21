@@ -11,10 +11,16 @@ public class VentanaInicial extends JFrame {
     }
     private void ejecuta() {
         crearVentana();
+        crearComponentes();
     }
-
     private void crearVentana() {
-        CentrarFrame();
+        setVisible(true);
+        setSize(500,200);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    private void crearComponentes() {
         Container contenedor = getContentPane();
         JPanel panel = new JPanel();//Este panel contiene los componentes.
         panel.setLayout(new GridLayout(0,1,1,10));
@@ -38,17 +44,6 @@ public class VentanaInicial extends JFrame {
         panel.add(boton2);
         contenedor.add(panel);
     }
-
-    private void CentrarFrame() {
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(false);
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = pantalla.height;
-        int width = pantalla.width;
-        setSize(width/2, height/2);
-    }
-
     public static void main( String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

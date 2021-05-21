@@ -37,7 +37,6 @@ public class VentanaAñadirPersonaTarea extends JFrame {
 
             }
         });
-
         panel.add(texto);
         panel.add(recuadroPersona);
         panel.add(boton1);
