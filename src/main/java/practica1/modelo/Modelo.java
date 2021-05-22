@@ -3,6 +3,7 @@ package practica1.modelo;
 import practica1.*;
 
 public interface Modelo {
+    /*
     void marcarFinalizada ( Tarea titulo ) throws TareaEsNullException;
     void añadirPersona( Personas objPersona ) throws PersonaRepetidaException;
     void añadirTarea( Tarea objTarea ) throws TareaRepetidaException, NoExisteNombreException,
@@ -17,5 +18,8 @@ public interface Modelo {
     void cambiarTipoFacturacionTarea( Tarea objTarea, Facturacion objFacturacion )
             throws MismoTipoFacturacionException, TareaEsNullException, NoExisteTareaException;
     double calcularCosteTotalProyecto();
+     */
     // listar tareas??
+    Proyecto crearProyecto(String nombre);
+    Proyecto abrirProyecto(String nombre);
 }

@@ -1,6 +1,9 @@
 package practica1.controlador;
 
+import javax.swing.*;
+
 public interface Controlador {
+    /*
     void getDatosNombreProyecto();
     void getDatosAltaPersona();
     void getDatosAnyadirPersonaTarea();
@@ -8,11 +11,14 @@ public interface Controlador {
     void getDatosMarcarTarea();
     void getDatosCambiarCosteTarea();
     void getDatosCambiarTipoFacturacion();
-    void crearProyecto();
     void altaPersona();
     void altaPersonaEnTarea();
     void altaTarea();
     void marcarTarea();
     void cambiarCosteTarea();
     void cambiarTipoFacturacion();
+     */
+
+    void getDatosCrearProyecto(JTextField recuadro);
+    void getDatosAbrirProyecto(JTextField recuadro);
 }

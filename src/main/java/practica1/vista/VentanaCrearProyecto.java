@@ -1,11 +1,14 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaCrearProyecto extends JFrame {
+    private Controlador controlador;
     VentanaCrearProyecto() { super(); }
     public void ejecuta() {
         crearVentana();
@@ -30,8 +33,9 @@ public class VentanaCrearProyecto extends JFrame {
         boton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                
+                controlador.getDatosCrearProyecto(recuadro);
+                new VentanaMenuOpciones().ejecuta();
+                dispose();
             }
         });
         panel.add(texto);

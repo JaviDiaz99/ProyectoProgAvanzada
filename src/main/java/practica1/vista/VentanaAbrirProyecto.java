@@ -1,12 +1,18 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaAbrirProyecto extends JFrame {
-    VentanaAbrirProyecto() { super(); }
+public class VentanaAbrirProyecto extends JFrame  {
+    private Controlador controlador;
+    private JTextField recuadro;
+    VentanaAbrirProyecto() {
+        super();
+    }
     public void ejecuta() {
         crearVentana();
         crearComponentes();
@@ -24,12 +30,13 @@ public class VentanaAbrirProyecto extends JFrame {
         setLayout(new BoxLayout(contenedor,BoxLayout.PAGE_AXIS));
         JPanel panel = new JPanel();
         JLabel texto = new JLabel();
-        JTextField recuadro = new JTextField(10);
+        recuadro = new JTextField(10);
         JButton boton1 = new JButton("Abrir proyecto");
         texto.setText("Nombre proyecto:");
         boton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                controlador.getDatosAbrirProyecto(recuadro);
 
 
             }
@@ -39,7 +46,6 @@ public class VentanaAbrirProyecto extends JFrame {
         panel.add(boton1);
         contenedor.add(panel);
     }
-
     public static void main( String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

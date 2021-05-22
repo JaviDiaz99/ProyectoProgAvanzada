@@ -1,5 +1,7 @@
 package practica1.vista;
 
-public interface Vista {
+import javax.swing.*;
 
+public interface Vista {
+    public String nombreProyecto(JTextField cuadro);
 }
