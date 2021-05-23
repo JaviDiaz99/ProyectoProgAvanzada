@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Proyecto implements Serializable, Modelo {
+public class Proyecto implements Serializable {
     private String nombre;
     private HashMap<String,Personas> listaPersonas; // Clave: nombre
     private HashMap<String,Tarea> listaTareas; // Clave: título

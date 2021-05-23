@@ -27,7 +27,7 @@ public class VentanaMenuOpciones extends JFrame {
         boton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VentanaDarAlta().ejecuta();
+                //new VentanaDarAlta().ejecuta();
                 dispose();
             }
         });

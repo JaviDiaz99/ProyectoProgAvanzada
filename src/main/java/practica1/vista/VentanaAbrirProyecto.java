@@ -6,8 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class VentanaAbrirProyecto extends JFrame  {
+public class VentanaAbrirProyecto extends JFrame   {
     private Controlador controlador;
     private JTextField recuadro;
     VentanaAbrirProyecto() {
@@ -36,7 +37,13 @@ public class VentanaAbrirProyecto extends JFrame  {
         boton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlador.getDatosAbrirProyecto(recuadro);
+                try {
+                    controlador.getDatosAbrirProyecto();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
 
 
             }
@@ -46,12 +53,7 @@ public class VentanaAbrirProyecto extends JFrame  {
         panel.add(boton1);
         contenedor.add(panel);
     }
-    public static void main( String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new VentanaAbrirProyecto().ejecuta();
-            }
-        });
+    public String nombreProyecto() {
+        return recuadro.getText();
     }
 }

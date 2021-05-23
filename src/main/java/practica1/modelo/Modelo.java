@@ -1,6 +1,9 @@
 package practica1.modelo;
 
 import practica1.*;
+import practica1.vista.Vista;
+
+import java.io.IOException;
 
 public interface Modelo {
     /*
@@ -20,6 +23,8 @@ public interface Modelo {
     double calcularCosteTotalProyecto();
      */
     // listar tareas??
+    void setVista(Vista vista);
     Proyecto crearProyecto(String nombre);
-    Proyecto abrirProyecto(String nombre);
+    void abrirProyecto(Proyecto proyecto) throws IOException, ClassNotFoundException;
+    void añadirPersona( String nombre, String email ) throws PersonaRepetidaException;
 }

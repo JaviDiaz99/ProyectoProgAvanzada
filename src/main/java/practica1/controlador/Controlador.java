@@ -1,6 +1,10 @@
 package practica1.controlador;
 
+import practica1.modelo.Modelo;
+import practica1.vista.Vista;
+
 import javax.swing.*;
+import java.io.IOException;
 
 public interface Controlador {
     /*
@@ -18,7 +22,10 @@ public interface Controlador {
     void cambiarCosteTarea();
     void cambiarTipoFacturacion();
      */
-
+    void setModelo(Modelo modelo);
+    void setVista(Vista vista);
     void getDatosCrearProyecto(JTextField recuadro);
-    void getDatosAbrirProyecto(JTextField recuadro);
+    void getDatosAbrirProyecto() throws IOException, ClassNotFoundException;
+    void getDatosAltaPersona();
+
 }
