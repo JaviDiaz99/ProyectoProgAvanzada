@@ -1,6 +1,6 @@
 package practica1.controlador;
 
-import practica1.PersonaRepetidaException;
+import practica1.*;
 import practica1.modelo.Modelo;
 import practica1.vista.Vista;
 
@@ -31,6 +31,50 @@ public class ImplementacionControlador implements Controlador {
         } catch (PersonaRepetidaException e) {
             vista.mensajeError(e.getMessage());
         }
+    }
+
+    public void getDatosAltaTarea() {
+
+        String Titulo = vista.getTitulo();
+        String descripcion = vista.getDescripcion();
+        String nombreResponsable = vista.getNombrePersonaResponsable();
+        double coste = vista.getCoste();
+        String nombreFacturacion = vista.getFacturacion();
+        int prioridad = vista.getPrioridad();
+        int dia = vista.getDia();
+        int mes = vista.getMes();
+        int año = vista.getAño();
+        Facturacion facturacion = null;
+
+        switch ( nombreFacturacion ){
+            case "consumo":
+                facturacion = new ConsumoInterno();
+                break;
+            case "urgente":
+
+        }
+        /*
+        try {
+            modelo.añadir
+        }
+         */
 
     }
+
+    @Override
+    public void getDatosAñadirPersonaTarea() throws NoExisteNombreException,
+            NoExisteTareaException {
+        String nombre = vista.nombrePersonaAñadirPersonaTarea();
+        String titulo = vista.tituloTareaAñadirPersonaTarea();
+        try {
+            modelo.añadirPersonaEnTarea(nombre, titulo);
+        } catch ( PersonaEsNullException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch ( ExistePersonaInscritaEnTareaException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch ( TareaEsNullException e ) {
+            vista.mensajeError(e.getMessage());
+        }
+    }
+
 }

@@ -1,8 +1,6 @@
 package practica1.modelo;
 
-import practica1.PersonaRepetidaException;
-import practica1.Personas;
-import practica1.Proyecto;
+import practica1.*;
 import practica1.vista.Vista;
 
 import javax.swing.*;
@@ -44,5 +42,18 @@ public class ImplementacionModelo implements Modelo {
     @Override
     public void añadirPersona(String nombre, String email) throws PersonaRepetidaException {
         vista.getProyecto().añadirPersona(new Personas(nombre,email));
+    }
+
+    @Override
+    public void añadirTarea(String titulo, String descripcion, String nombreResponsable, double Coste,
+                            Facturacion facturacion, int prioridad, int dia, int mes, int año, String resultado) {
+        //vista.getProyecto().añadirTarea(new Tarea(titulo,descripcion,));
+    }
+
+    @Override
+    public void añadirPersonaEnTarea(String nombrePersona, String titulo) throws PersonaEsNullException,
+            NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException {
+        vista.getProyecto().introducirPersonaEnTarea(vista.getProyecto().devolverPersona(nombrePersona)
+        ,vista.getProyecto().devolverTarea(titulo));
     }
 }

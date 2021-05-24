@@ -16,7 +16,22 @@ public interface Vista {
 
     void mensajeError(String mensaje);
     Proyecto getProyecto();
+
     String getNombrePersonaDarAlta();
     String getEmailPersonaDarAlta();
+
+    String getTitulo();
+    String getDescripcion();
+    String getNombrePersonaResponsable();
+    double getCoste();
+    String getFacturacion();
+    int getPrioridad();
+    int getDia();
+    int getMes();
+    int getAño();
+    String getResultado();
+
+    String nombrePersonaAñadirPersonaTarea();
+    String tituloTareaAñadirPersonaTarea();
 
 }

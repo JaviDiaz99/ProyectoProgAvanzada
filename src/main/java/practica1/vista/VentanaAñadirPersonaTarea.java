@@ -1,57 +1,46 @@
 package practica1.vista;
 
+import practica1.controlador.Controlador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaAñadirPersonaTarea extends JFrame {
-    VentanaAñadirPersonaTarea() { super(); }
-    public void ejecuta() {
-        crearVentana();
-        crearComponentes();
-    }
-    private void crearVentana() {
-        setVisible(true);
-        setSize(500,80);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+public class VentanaAñadirPersonaTarea extends JPanel {
+    private JTextField nombre;
+    private JTextField titulo;
 
-    private void crearComponentes() {
-        Container contenedor = getContentPane();
-        setLayout(new BoxLayout(contenedor,BoxLayout.PAGE_AXIS));
+    VentanaAñadirPersonaTarea(Controlador controlador) {
+        setLayout(new BorderLayout());
+
+        JPanel datos = new JPanel();
+        datos.setLayout(new BoxLayout(datos, BoxLayout.PAGE_AXIS));
+
+        nombre = creaEntrada(datos, "Nombre persona:");
+        titulo = creaEntrada(datos, "Titulo tarea:");
+        add(datos, BorderLayout.PAGE_START);
+
+        JButton boton = new JButton("Añadir");
+        add(boton,BorderLayout.PAGE_END);
+
+        final ActionListener alta = e -> controlador.getDatosAltaPersona();
+        /*
+         nombre.addActionListener(e -> concepto.requestFocusInWindow()); ??
+        nombre.addActionListener(e -> email.requestFocusInWindow());
+        email.addActionListener(alta); // ???
+         */
+        boton.addActionListener(alta);
+    }
+    private JTextField creaEntrada(JPanel datos, String mensaje) {
         JPanel panel = new JPanel();
-        JLabel texto = new JLabel();
-        JLabel texto2 = new JLabel();
-        JTextField recuadroPersona = new JTextField(10);
-        JTextField recuadroTarea = new JTextField(10);
-        JButton boton1 = new JButton("Añadir");
-        texto.setText("Nombre persona:");
-        texto.setText("Título de tarea:");
-        boton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-        panel.add(texto);
-        panel.add(recuadroPersona);
-        panel.add(boton1);
-        panel.add(texto2);
-        panel.add(recuadroTarea);
-        panel.add(boton1);
-        contenedor.add(panel);
+        panel.setLayout(new BorderLayout(4, 0));
+        panel.add(new JLabel(mensaje), BorderLayout.LINE_START);
+        JTextField entrada = new JTextField();
+        panel.add(entrada, BorderLayout.CENTER);
+        datos.add(panel);
+        return entrada;
     }
-
-    public static void main( String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new VentanaAñadirPersonaTarea().ejecuta();
-            }
-        });
-    }
+    public String nombrePersona() { return nombre.getText(); }
+    public String tituloTarea() { return titulo.getText(); }
 }
