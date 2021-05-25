@@ -13,10 +13,7 @@ public class ImplementacionVista implements Vista{
     private Proyecto proyecto;
 
     private JFrame ventana;
-    private JFrame ventanaFacturacion;
 
-    private VentanaAbrirProyecto ventanaAbrir;
-    private VentanaCrearProyecto ventanaCrear;
     private VentanaDarAltaPersona ventanaAltaPersona;
     private VentanaAñadirPersonaTarea ventanaAñadirPersonaTarea;
     private VentanaDarAltaTarea ventanaAltaTarea;
@@ -32,10 +29,6 @@ public class ImplementacionVista implements Vista{
 
     public Proyecto getProyecto() {
         return proyecto;
-    }
-
-    public String nombreProyecto(){
-        return ventanaAbrir.nombreProyecto();
     }
 
     @Override

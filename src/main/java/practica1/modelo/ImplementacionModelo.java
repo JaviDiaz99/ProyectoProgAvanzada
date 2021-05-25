@@ -95,11 +95,11 @@ public class ImplementacionModelo implements Modelo {
     }
 
     @Override
-    public void cambiarCosteTarea(String nombreTarea, String coste) throws TareaEsNullException, NoExisteTareaException {
+    public void cambiarCosteTarea(String nombreTarea, String coste) throws TareaEsNullException,CosteNegativoException {
         if ( nombreTarea.isEmpty() || coste.isEmpty() ) {
             throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
         }
-        //vista.getProyecto().cambiarCosteTarea(vista.getProyecto().devolverTarea(nombreTarea),vista.getProyecto().);
+        vista.getProyecto().cambiarCosteTarea(vista.getProyecto().devolverTarea(nombreTarea),Double.parseDouble(coste));
     }
 
     @Override

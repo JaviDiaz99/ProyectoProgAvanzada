@@ -36,7 +36,7 @@ public interface Modelo {
     void marcarTarea( String tituloTarea) throws TareaEsNullException;
     void borrarPersonaTarea(String nombrePersona, String titulo) throws PersonaEsNullException,
             NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException, NoExistePersonaInscritaEnTareaException;
-    void cambiarCosteTarea(String nombreTarea, String coste) throws TareaEsNullException, NoExisteTareaException;
+    void cambiarCosteTarea(String nombreTarea, String coste) throws TareaEsNullException, NoExisteTareaException, CosteNegativoException;
     void listarPersonas(String persona) throws PersonaEsNullException, NoExisteNombreException;
     void listarTareas(String tarea) throws TareaEsNullException, NoExisteTareaException;
 }

@@ -21,7 +21,7 @@ public class VentanaMarcarTarea extends JPanel {
         JButton boton = new JButton("Marcar");
         add(boton,BorderLayout.PAGE_END);
 
-        final ActionListener alta = e -> controlador.getDatosAltaPersona();
+        final ActionListener alta = e -> controlador.getDatosMarcarTarea();
 
         boton.addActionListener(alta);
 

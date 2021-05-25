@@ -155,6 +155,8 @@ public class ImplementacionControlador implements Controlador {
             vista.mensajeError(e.getMessage());
         } catch ( IllegalArgumentException e ) {
             vista.mensajeError(e.getMessage());
+        } catch ( CosteNegativoException e ) {
+            vista.mensajeError(e.getMessage());
         }
 
     }
