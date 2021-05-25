@@ -72,4 +72,9 @@ public class ImplementacionModelo implements Modelo {
     public void marcarTarea( String tituloTarea) throws TareaEsNullException {
         vista.getProyecto().marcarFinalizada(vista.getProyecto().devolverTarea(tituloTarea));
     }
+
+    @Override
+    public void borrarPersonaTarea(String nombrePersona, String titulo) throws PersonaEsNullException, NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException {
+
+    }
 }
