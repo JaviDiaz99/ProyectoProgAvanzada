@@ -30,4 +30,5 @@ public interface Controlador {
     void getDatosAltaPersona();
     void getDatosAltaTarea();
     void getDatosAnyadirPersonaEnTarea();
+    void getDatosMarcarTarea();
 }

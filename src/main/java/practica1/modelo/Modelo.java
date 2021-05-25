@@ -25,12 +25,13 @@ public interface Modelo {
     // listar tareas??
     void setVista(Vista vista);
     Proyecto crearProyecto(String nombre);
-    void abrirProyecto(Proyecto proyecto) throws IOException, ClassNotFoundException;
+    void abrirProyecto() throws IOException, ClassNotFoundException;
     void añadirPersona( String nombre, String email ) throws PersonaRepetidaException;
-    void añadirTarea(String titulo, String descripcion, String nombreResponsable,int prioridad,
-            int dia, int mes, int año, boolean estafinalizada, String resultado, Facturacion facturacion,double Coste)
+    void añadirTarea(String titulo, String descripcion, String nombreResponsable,String prioridad,
+            String dia, String mes, String año, String resultado, Facturacion facturacion,String Coste)
             throws PersonaEsNullException, NoExisteNombreException, FechaInicialAntesFinalException,
             TareaRepetidaException, PrioridadErroneaException, CosteNegativoException;
     void añadirPersonaEnTarea( String nombrePersona, String titulo) throws PersonaEsNullException,
             NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
+    void marcarTarea( String tituloTarea) throws TareaEsNullException;
 }

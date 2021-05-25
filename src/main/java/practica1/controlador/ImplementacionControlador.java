@@ -21,7 +21,7 @@ public class ImplementacionControlador implements Controlador {
         //modelo.crearProyecto(nombre);
     }
     public void getDatosAbrirProyecto() throws IOException, ClassNotFoundException {
-        modelo.abrirProyecto(vista.getProyecto());
+        //modelo.abrirProyecto(vista.getProyecto());
     }
     public void getDatosAltaPersona() {
         String nombre = vista.getNombrePersonaDarAlta();
@@ -33,57 +33,66 @@ public class ImplementacionControlador implements Controlador {
         }
     }
     public void getDatosAltaTarea() {
-
         String Titulo = vista.getTitulo();
         String descripcion = vista.getDescripcion();
         String nombreResponsable = vista.getNombrePersonaResponsable();
-        double coste = vista.getCoste();
+        String coste = vista.getCoste();
         String nombreFacturacion = vista.getFacturacion();
-        int prioridad = vista.getPrioridad();
-        int dia = vista.getDia();
-        int mes = vista.getMes();
-        int año = vista.getAño();
+        String prioridad = vista.getPrioridad();
+        String dia = vista.getDia();
+        String mes = vista.getMes();
+        String año = vista.getAño();
         String resultado = vista.getResultado();
-        boolean estaFinalizada = vista.getFinalizada();
-        double valor;
+        double valor = 0;
         Facturacion facturacion = null;
+        boolean seguir = false;
 
-        switch ( nombreFacturacion ){ // facturacion sea null??
-            case "consumo":
-                facturacion = new ConsumoInterno();
-                break;
-            case "descuento":
-                valor = vista.getDescuentoOsobrecoste();
-                if ( valor < 0 ) {
-                    vista.mensajeErrorFacturacion(" El " + nombreFacturacion + "no puede ser menor que 0");
-                } else {
-                    facturacion = new Descuento(valor);
-                }
-                break;
-            case "urgente":
-               valor = vista.getDescuentoOsobrecoste();
-               if ( valor < 0 ) {
-                   vista.mensajeErrorFacturacion(" El " + nombreFacturacion + "no puede ser menor que 0");
-               } else {
-                   facturacion = new Urgente(valor);
-               }
-               break;
-        }
         try {
-            modelo.añadirTarea(Titulo,descripcion,nombreResponsable,prioridad,dia,mes,año,estaFinalizada,resultado,
-                    facturacion,coste);
-        }  catch (PersonaEsNullException | NoExisteNombreException e) {
-            vista.mensajeErrorFacturacion(e.getMessage());
-        } catch (FechaInicialAntesFinalException e) {
-            vista.mensajeErrorFacturacion(e.getMessage());
-        } catch (TareaRepetidaException e) {
-            vista.mensajeErrorFacturacion(e.getMessage());
-        } catch (CosteNegativoException e) {
-            vista.mensajeErrorFacturacion(e.getMessage());
-        } catch ( PrioridadErroneaException e ) {
-            vista.mensajeErrorFacturacion(e.getMessage());
+            valor = Double.parseDouble(vista.getValorAplicar());
+            switch ( nombreFacturacion ){ // facturacion sea null??
+                case "consumo":
+                    facturacion = new ConsumoInterno();
+                    seguir = true;
+                    break;
+                case "descuento":
+                    if ( valor < 0 ) {
+                        vista.mensajeError(" El " + nombreFacturacion + "no puede ser menor que 0");
+                    } else {
+                        facturacion = new Descuento(valor);
+                        seguir = true;
+                    }
+                    break;
+                case "urgente":
+                    if ( valor < 0 ) {
+                        vista.mensajeError(" El " + nombreFacturacion + "no puede ser menor que 0");
+                    } else {
+                        facturacion = new Urgente(valor);
+                        seguir = true;
+                    }
+                    break;
+            }
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError("El valor tiene que ser un número");
         }
 
+        if ( seguir ) {
+            try {
+                modelo.añadirTarea(Titulo,descripcion,nombreResponsable,prioridad,dia,mes,año,resultado,
+                        facturacion,coste);
+            }  catch (PersonaEsNullException | NoExisteNombreException e) {
+                vista.mensajeError(e.getMessage());
+            } catch (FechaInicialAntesFinalException e) {
+                vista.mensajeError(e.getMessage());
+            } catch (TareaRepetidaException e) {
+                vista.mensajeError(e.getMessage());
+            } catch (CosteNegativoException e) {
+                vista.mensajeError(e.getMessage());
+            } catch ( PrioridadErroneaException e ) {
+                vista.mensajeError(e.getMessage());
+            } catch ( IllegalArgumentException e ) {
+                vista.mensajeError(e.getMessage());
+            }
+        }
     }
     @Override
     public void getDatosAnyadirPersonaEnTarea() {
@@ -99,5 +108,16 @@ public class ImplementacionControlador implements Controlador {
             vista.mensajeError(e.getMessage());
         }
     }
+
+    @Override
+    public void getDatosMarcarTarea() {
+        String tituloTarea = vista.getTituloMarcarTarea();
+        try {
+            modelo.marcarTarea(tituloTarea);
+        } catch ( TareaEsNullException e ) {
+            vista.mensajeError(e.getMessage());
+        }
+    }
+
 
 }

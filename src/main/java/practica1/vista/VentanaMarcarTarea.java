@@ -6,24 +6,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class VentanaFacturacion extends JPanel{
-    private JTextField recuadro;
+public class VentanaMarcarTarea extends JPanel {
+    private JTextField tituloTarea;
 
-    VentanaFacturacion(Controlador controlador, String sobrecosteOdescuento) {
+    public VentanaMarcarTarea(Controlador controlador) {
         setLayout(new BorderLayout());
 
         JPanel datos = new JPanel();
         datos.setLayout(new BoxLayout(datos, BoxLayout.PAGE_AXIS));
 
-        recuadro = creaEntrada(datos, "Introducir " + sobrecosteOdescuento + ":");
+        tituloTarea = creaEntrada(datos, "Titulo tarea:");
         add(datos, BorderLayout.PAGE_START);
 
-        JButton boton = new JButton("Introducir");
+        JButton boton = new JButton("Marcar");
         add(boton,BorderLayout.PAGE_END);
 
-        final ActionListener alta = e -> controlador.getDatosAltaTarea();
+        final ActionListener alta = e -> controlador.getDatosAltaPersona();
 
         boton.addActionListener(alta);
+
     }
     private JTextField creaEntrada(JPanel datos, String mensaje) {
         JPanel panel = new JPanel();
@@ -34,5 +35,5 @@ public class VentanaFacturacion extends JPanel{
         datos.add(panel);
         return entrada;
     }
-    public double descuentoOsobrecoste() { return Double.parseDouble(recuadro.getText()); }
+    public String tituloTarea() { return tituloTarea.getText(); }
 }
