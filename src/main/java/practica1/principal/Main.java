@@ -7,8 +7,10 @@ import practica1.modelo.Modelo;
 import practica1.vista.ImplementacionVista;
 import practica1.vista.Vista;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args ) {
+    public static void main(String[] args ) throws IOException, ClassNotFoundException {
         Vista vista = new ImplementacionVista();
         Modelo modelo = new ImplementacionModelo();
         Controlador controlador = new ImplementacionControlador();
@@ -21,6 +23,7 @@ public class Main {
         controlador.setModelo(modelo);
         controlador.setVista(vista);
 
+        modelo.abrirProyecto();
         vista.crearGUI();
     }
 }

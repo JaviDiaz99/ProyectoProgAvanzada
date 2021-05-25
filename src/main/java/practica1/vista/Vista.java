@@ -11,12 +11,10 @@ public interface Vista {
     void setModelo(Modelo modelo);
 
     void crearGUI();
-    void crearGUITipoFac(String sobrecosteOdescuento);
 
     void setProyecto(Proyecto proyecto);
 
     void mensajeError(String mensaje);
-    void mensajeErrorFacturacion(String mensaje);
 
     Proyecto getProyecto();
 
@@ -26,18 +24,18 @@ public interface Vista {
     String getTitulo();
     String getDescripcion();
     String getNombrePersonaResponsable();
-    double getCoste();
+    String getCoste();
     String getFacturacion();
-    int getPrioridad();
-    int getDia();
-    int getMes();
-    int getAño();
+    String getPrioridad();
+    String getDia();
+    String getMes();
+    String getAño();
     String getResultado();
-    boolean getFinalizada();
+    String getValorAplicar();
 
     String nombrePersonaAñadirPersonaTarea();
     String tituloTareaAñadirPersonaTarea();
 
-    double getDescuentoOsobrecoste();
+    String getTituloMarcarTarea();
 
 }

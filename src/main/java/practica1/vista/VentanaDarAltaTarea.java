@@ -16,13 +16,11 @@ public class VentanaDarAltaTarea extends JPanel {
     private JTextField mes;
     private JTextField año;
     private JTextField resultadoEsperado;
+    private JTextField valorAplicar;
     private JRadioButton botonConsumo;
     private JRadioButton botonDescuento;
     private JRadioButton botonUrgente;
     private ButtonGroup grupo;
-    private ButtonGroup grupo2;
-    private JRadioButton siPrioridad;
-    private JRadioButton noPrioridad;
 
     // falta tipo facturación
 
@@ -52,20 +50,12 @@ public class VentanaDarAltaTarea extends JPanel {
         panel.add(botonConsumo);
         panel.add(botonDescuento);
         panel.add(botonUrgente);
+        botonUrgente.setSelected(true);
+        panel.add(new JLabel("Valor aplicar:"), BorderLayout.LINE_START);
+        valorAplicar = new JTextField(6);
+        valorAplicar.setText("0");
+        panel.add(valorAplicar);
         datos.add(panel);
-
-        siPrioridad = new JRadioButton("Si");
-        noPrioridad = new JRadioButton("No");
-        siPrioridad.setActionCommand("si");
-        noPrioridad.setActionCommand("no");
-        grupo2 = new ButtonGroup();
-        grupo2.add(siPrioridad);
-        grupo2.add(noPrioridad);
-        JPanel panel2 = new JPanel();
-        panel2.add(new JLabel("Prioridad:"), BorderLayout.LINE_START);
-        panel2.add(siPrioridad);
-        panel2.add(noPrioridad);
-        datos.add(panel2);
 
         prioridadTarea = creaEntrada(datos,"Prioridad:");
 
@@ -79,7 +69,7 @@ public class VentanaDarAltaTarea extends JPanel {
         JButton boton = new JButton("Dar alta");
         add(boton,BorderLayout.PAGE_END);
 
-        final ActionListener alta = e -> controlador.getDatosAltaPersona();
+        final ActionListener alta = e -> controlador.getDatosAltaTarea();
 
         /*
         Titulo.addActionListener(e -> descripcion.requestFocusInWindow());
@@ -109,13 +99,13 @@ public class VentanaDarAltaTarea extends JPanel {
     public String nombreTitulo() { return Titulo.getText(); }
     public String descripcion() { return descripcion.getText(); }
     public String nombrePersonaResponsable() { return nombrePersonaResponsable.getText(); }
-    public double coste() { return Double.parseDouble(costeTarea.getText()); }
-    public int prioridad() { return Integer.parseInt(prioridadTarea.getText());}
+    public String coste() { return costeTarea.getText(); }
+    public String prioridad() { return prioridadTarea.getText() ;}
     public String tipoFacturacion() { return grupo.getSelection().getActionCommand(); }
-    public int dia() { return Integer.parseInt(dia.getText());}
-    public int mes() { return Integer.parseInt(mes.getText());}
-    public int año() { return Integer.parseInt(año.getText());}
+    public String dia() { return dia.getText();}
+    public String mes() { return mes.getText();}
+    public String año() { return año.getText();}
     public String resultado() { return resultadoEsperado.getText();}
-    public boolean estaFinalizada() { return grupo2.getSelection().getActionCommand().equals("si"); }
+    public String valorAplicar() { return valorAplicar.getText(); }
 }
 

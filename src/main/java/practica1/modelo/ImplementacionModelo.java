@@ -21,11 +21,14 @@ public class ImplementacionModelo implements Modelo {
     }
 
     @Override
-    public void abrirProyecto(Proyecto proyecto) throws IOException, ClassNotFoundException {
+    public void abrirProyecto() throws IOException, ClassNotFoundException {
         JFileChooser fileChooser = new JFileChooser();
         int resultado = fileChooser.showOpenDialog(null);
+        Proyecto proyecto;
         switch (resultado) {
             case CANCEL_OPTION: // iría crear proyecto aqui??
+                proyecto = new Proyecto("PROYECTO_SIN_NOMBRE");
+                vista.setProyecto(proyecto);
                 break;
             case APPROVE_OPTION:
                 File f = fileChooser.getSelectedFile();
@@ -46,13 +49,18 @@ public class ImplementacionModelo implements Modelo {
     }
 
     @Override
-    public void añadirTarea(String titulo, String descripcion, String nombreResponsable,int prioridad,
-                            int dia, int mes, int año, boolean estafinalizada, String resultado,
-                            Facturacion facturacion, double coste) throws PersonaEsNullException,
+    public void añadirTarea(String titulo, String descripcion, String nombreResponsable,String prioridad,
+                            String dia, String mes, String año, String resultado,
+                            Facturacion facturacion, String coste) throws PersonaEsNullException,
             NoExisteNombreException, FechaInicialAntesFinalException, TareaRepetidaException,
             PrioridadErroneaException, CosteNegativoException {
+        if ( titulo.isEmpty() || descripcion.isEmpty() || nombreResponsable.isEmpty() || prioridad.isEmpty()
+        || dia.isEmpty() || mes.isEmpty() || año.isEmpty() || resultado.isEmpty() || coste.isEmpty()) {
+            throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
+        }
         vista.getProyecto().añadirTarea(new Tarea(titulo,descripcion,vista.getProyecto().devolverPersona(nombreResponsable)
-        ,prioridad,new Date(año, mes, dia),estafinalizada,resultado,facturacion,coste));
+        ,Integer.parseInt(prioridad),new Date(Integer.parseInt(año), Integer.parseInt(mes), Integer.parseInt(dia)),
+                false,resultado,facturacion,Double.parseDouble(coste)));
     }
 
     @Override
@@ -60,5 +68,8 @@ public class ImplementacionModelo implements Modelo {
             NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException {
         vista.getProyecto().introducirPersonaEnTarea(vista.getProyecto().devolverPersona(nombrePersona)
         ,vista.getProyecto().devolverTarea(titulo));
+    }
+    public void marcarTarea( String tituloTarea) throws TareaEsNullException {
+        vista.getProyecto().marcarFinalizada(vista.getProyecto().devolverTarea(tituloTarea));
     }
 }
