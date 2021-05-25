@@ -35,6 +35,6 @@ public class VentanaListarTareas extends JPanel{
         return entrada;
     }
     public String nombreTarea() { return tarea.getText(); }
-
+//
 }
 
