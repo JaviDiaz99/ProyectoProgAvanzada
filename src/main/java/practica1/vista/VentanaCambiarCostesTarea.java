@@ -4,27 +4,26 @@ import practica1.controlador.Controlador;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaBorrarPersonaTarea extends JPanel {
-    private JTextField nombre;
-    private JTextField titulo;
+public class VentanaCambiarCostesTarea extends JPanel {
+    private JTextField tarea;
+    private JTextField coste;
 
-    VentanaBorrarPersonaTarea(Controlador controlador) {
+    VentanaCambiarCostesTarea(Controlador controlador) {
         setLayout(new BorderLayout());
 
         JPanel datos = new JPanel();
         datos.setLayout(new BoxLayout(datos, BoxLayout.PAGE_AXIS));
 
-        nombre = creaEntrada(datos, "Nombre persona:");
-        titulo = creaEntrada(datos, "Titulo tarea:");
+        tarea = creaEntrada(datos, "Nombre tarea:");
+        coste = creaEntrada(datos, "Coste tarea:");
         add(datos, BorderLayout.PAGE_START);
 
-        JButton boton = new JButton("Borrar");
+        JButton boton = new JButton("Cambiar");
         add(boton,BorderLayout.PAGE_END);
 
-        final ActionListener alta = e -> controlador.getDatosBorrarPersonaTarea();
+        final ActionListener alta = e -> controlador.getDatosCambiarCostesTarea();
         /*
          nombre.addActionListener(e -> concepto.requestFocusInWindow()); ??
         nombre.addActionListener(e -> email.requestFocusInWindow());
@@ -41,6 +40,8 @@ public class VentanaBorrarPersonaTarea extends JPanel {
         datos.add(panel);
         return entrada;
     }
-    public String nombrePersona() { return nombre.getText(); }
-    public String tituloTarea() { return titulo.getText(); }
+    public String nombretarea() { return tarea.getText(); }
+    public String costetarea() { return coste.getText(); }
 }
+
+

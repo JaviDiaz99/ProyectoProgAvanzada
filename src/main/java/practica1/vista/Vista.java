@@ -39,6 +39,9 @@ public interface Vista {
     String nombrePersonaBorrarPersonaTarea();
     String tituloTareaBorrarPersonaTarea();
 
+    String nombreTareaCoste();
+    String costeDeTarea();
+
     String getTituloMarcarTarea();
 
 }

@@ -22,6 +22,7 @@ public class ImplementacionVista implements Vista{
     private VentanaDarAltaTarea ventanaAltaTarea;
     private VentanaMarcarTarea ventanaMarcarTarea;
     private VentanaBorrarPersonaTarea ventanaBorrarPersonaTarea;
+    private VentanaCambiarCostesTarea ventanaCambiarCostesTarea;
 
     public void setControlador(Controlador controlador) { this.controlador = controlador; }
     public void setModelo(Modelo modelo) { this.modelo = modelo; }
@@ -91,6 +92,16 @@ public class ImplementacionVista implements Vista{
     }
 
     @Override
+    public String nombreTareaCoste() {
+        return ventanaCambiarCostesTarea.nombretarea();
+    }
+
+    @Override
+    public String costeDeTarea() {
+        return ventanaCambiarCostesTarea.costetarea();
+    }
+
+    @Override
     public String getTituloMarcarTarea() { return ventanaMarcarTarea.tituloTarea(); }
 
     public void crearGUI(){
@@ -100,6 +111,7 @@ public class ImplementacionVista implements Vista{
         ventanaAñadirPersonaTarea = new VentanaAñadirPersonaTarea(controlador);
         ventanaMarcarTarea = new VentanaMarcarTarea(controlador);
         ventanaBorrarPersonaTarea= new VentanaBorrarPersonaTarea(controlador);
+        ventanaCambiarCostesTarea = new VentanaCambiarCostesTarea(controlador);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.add("Alta Persona", ventanaAltaPersona);
@@ -107,6 +119,7 @@ public class ImplementacionVista implements Vista{
         tabs.add("Añadir persona en tarea",ventanaAñadirPersonaTarea);
         tabs.add("Marcar tarea",ventanaMarcarTarea);
         tabs.add("Borrar persona en tarea", ventanaBorrarPersonaTarea);
+        tabs.add("Cambiar coste tarea", ventanaCambiarCostesTarea);
 
 
         ventana.add(tabs);

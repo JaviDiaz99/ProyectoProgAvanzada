@@ -93,4 +93,13 @@ public class ImplementacionModelo implements Modelo {
         vista.getProyecto().eliminarPersonaEnTarea(vista.getProyecto().devolverPersona(nombrePersona),
                 vista.getProyecto().devolverTarea(titulo));
     }
+
+    @Override
+    public void cambiarCosteTarea(String nombreTarea, String coste) throws TareaEsNullException, NoExisteTareaException {
+        if ( nombreTarea.isEmpty() || coste.isEmpty() ) {
+            throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
+        }
+        //vista.getProyecto().cambiarCosteTarea(vista.getProyecto().devolverTarea(nombreTarea),vista.getProyecto().);
+    }
+
 }

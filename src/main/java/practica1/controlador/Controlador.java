@@ -32,4 +32,6 @@ public interface Controlador {
     void getDatosAnyadirPersonaEnTarea();
     void getDatosMarcarTarea();
     void getDatosBorrarPersonaTarea();
+    void getDatosCambiarCostesTarea();
+
 }

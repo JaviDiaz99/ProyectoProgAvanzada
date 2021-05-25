@@ -145,5 +145,19 @@ public class ImplementacionControlador implements Controlador {
 
     }
 
+    @Override
+    public void getDatosCambiarCostesTarea() {
+        String tarea = vista.nombreTareaCoste();
+        String coste = vista.costeDeTarea();
+        try {
+            modelo.cambiarCosteTarea(tarea, coste);
+        } catch (TareaEsNullException | NoExisteTareaException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
+        }
+
+    }
+
 
 }
