@@ -20,6 +20,9 @@ public class VentanaDarAltaTarea extends JPanel {
     private JRadioButton botonDescuento;
     private JRadioButton botonUrgente;
     private ButtonGroup grupo;
+    private ButtonGroup grupo2;
+    private JRadioButton siPrioridad;
+    private JRadioButton noPrioridad;
 
     // falta tipo facturación
 
@@ -50,6 +53,19 @@ public class VentanaDarAltaTarea extends JPanel {
         panel.add(botonDescuento);
         panel.add(botonUrgente);
         datos.add(panel);
+
+        siPrioridad = new JRadioButton("Si");
+        noPrioridad = new JRadioButton("No");
+        siPrioridad.setActionCommand("si");
+        noPrioridad.setActionCommand("no");
+        grupo2 = new ButtonGroup();
+        grupo2.add(siPrioridad);
+        grupo2.add(noPrioridad);
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("Prioridad:"), BorderLayout.LINE_START);
+        panel2.add(siPrioridad);
+        panel2.add(noPrioridad);
+        datos.add(panel2);
 
         prioridadTarea = creaEntrada(datos,"Prioridad:");
 
@@ -100,7 +116,6 @@ public class VentanaDarAltaTarea extends JPanel {
     public int mes() { return Integer.parseInt(mes.getText());}
     public int año() { return Integer.parseInt(año.getText());}
     public String resultado() { return resultadoEsperado.getText();}
-
-
+    public boolean estaFinalizada() { return grupo2.getSelection().getActionCommand().equals("si"); }
 }
 

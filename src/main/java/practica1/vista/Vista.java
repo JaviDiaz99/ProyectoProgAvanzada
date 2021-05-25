@@ -11,10 +11,13 @@ public interface Vista {
     void setModelo(Modelo modelo);
 
     void crearGUI();
+    void crearGUITipoFac(String sobrecosteOdescuento);
 
     void setProyecto(Proyecto proyecto);
 
     void mensajeError(String mensaje);
+    void mensajeErrorFacturacion(String mensaje);
+
     Proyecto getProyecto();
 
     String getNombrePersonaDarAlta();
@@ -30,8 +33,11 @@ public interface Vista {
     int getMes();
     int getAño();
     String getResultado();
+    boolean getFinalizada();
 
     String nombrePersonaAñadirPersonaTarea();
     String tituloTareaAñadirPersonaTarea();
+
+    double getDescuentoOsobrecoste();
 
 }

@@ -13,12 +13,15 @@ public class ImplementacionVista implements Vista{
     private Proyecto proyecto;
 
     private JFrame ventana;
+    private JFrame ventanaFacturacion;
 
     private VentanaAbrirProyecto ventanaAbrir;
     private VentanaCrearProyecto ventanaCrear;
     private VentanaDarAltaPersona ventanaAltaPersona;
     private VentanaAñadirPersonaTarea ventanaAñadirPersonaTarea;
     private VentanaDarAltaTarea ventanaAltaTarea;
+
+    private VentanaFacturacion ventanaIntroducirFacturacion;
 
     public void setControlador(Controlador controlador) { this.controlador = controlador; }
     public void setModelo(Modelo modelo) { this.modelo = modelo; }
@@ -69,10 +72,17 @@ public class ImplementacionVista implements Vista{
     public String getResultado() { return ventanaAltaTarea.resultado(); }
 
     @Override
+    public boolean getFinalizada() { return ventanaAltaTarea.estaFinalizada(); }
+
+    @Override
     public String nombrePersonaAñadirPersonaTarea() { return ventanaAñadirPersonaTarea.nombrePersona(); }
 
     @Override
     public String tituloTareaAñadirPersonaTarea() { return ventanaAñadirPersonaTarea.tituloTarea(); }
+
+    @Override
+    public double getDescuentoOsobrecoste() { return ventanaIntroducirFacturacion.descuentoOsobrecoste(); }
+
 
     public void crearGUI(){
         ventana = new JFrame();
@@ -91,8 +101,27 @@ public class ImplementacionVista implements Vista{
     }
 
     @Override
+    public void crearGUITipoFac(String sobrecosteOdescuento) {
+        // cerrar ventana principal?
+        ventanaFacturacion = new JFrame();
+        ventanaIntroducirFacturacion = new VentanaFacturacion(controlador,sobrecosteOdescuento);
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.add("Introducir " + sobrecosteOdescuento, ventanaIntroducirFacturacion);
+
+        ventanaFacturacion.add(tabs);
+        ventanaFacturacion.pack();
+        ventanaFacturacion.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ventanaFacturacion.setVisible(true);
+    }
+
+
+    @Override
     public void mensajeError(String mensaje) {
         JOptionPane.showMessageDialog(ventana, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    @Override
+    public void mensajeErrorFacturacion(String mensaje) {
+        JOptionPane.showMessageDialog(ventanaFacturacion, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     public String nombreProyecto(JTextField cuadro){
         return cuadro.getText();

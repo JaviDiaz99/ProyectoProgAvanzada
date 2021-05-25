@@ -27,7 +27,10 @@ public interface Modelo {
     Proyecto crearProyecto(String nombre);
     void abrirProyecto(Proyecto proyecto) throws IOException, ClassNotFoundException;
     void añadirPersona( String nombre, String email ) throws PersonaRepetidaException;
-    void añadirTarea(String titulo, String descripcion, String nombreResponsable , double Coste, Facturacion facturacion,
-    int prioridad, int dia, int mes, int año, String resultado);
-    void añadirPersonaEnTarea( String nombrePersona, String titulo) throws PersonaEsNullException, NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
+    void añadirTarea(String titulo, String descripcion, String nombreResponsable,int prioridad,
+            int dia, int mes, int año, boolean estafinalizada, String resultado, Facturacion facturacion,double Coste)
+            throws PersonaEsNullException, NoExisteNombreException, FechaInicialAntesFinalException,
+            TareaRepetidaException, PrioridadErroneaException, CosteNegativoException;
+    void añadirPersonaEnTarea( String nombrePersona, String titulo) throws PersonaEsNullException,
+            NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
 }

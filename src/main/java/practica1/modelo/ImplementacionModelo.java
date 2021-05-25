@@ -5,6 +5,7 @@ import practica1.vista.Vista;
 
 import javax.swing.*;
 import java.io.*;
+import java.sql.Date;
 
 import static javax.swing.JFileChooser.*;
 
@@ -24,7 +25,7 @@ public class ImplementacionModelo implements Modelo {
         JFileChooser fileChooser = new JFileChooser();
         int resultado = fileChooser.showOpenDialog(null);
         switch (resultado) {
-            case CANCEL_OPTION:
+            case CANCEL_OPTION: // iría crear proyecto aqui??
                 break;
             case APPROVE_OPTION:
                 File f = fileChooser.getSelectedFile();
@@ -45,9 +46,13 @@ public class ImplementacionModelo implements Modelo {
     }
 
     @Override
-    public void añadirTarea(String titulo, String descripcion, String nombreResponsable, double Coste,
-                            Facturacion facturacion, int prioridad, int dia, int mes, int año, String resultado) {
-        //vista.getProyecto().añadirTarea(new Tarea(titulo,descripcion,));
+    public void añadirTarea(String titulo, String descripcion, String nombreResponsable,int prioridad,
+                            int dia, int mes, int año, boolean estafinalizada, String resultado,
+                            Facturacion facturacion, double coste) throws PersonaEsNullException,
+            NoExisteNombreException, FechaInicialAntesFinalException, TareaRepetidaException,
+            PrioridadErroneaException, CosteNegativoException {
+        vista.getProyecto().añadirTarea(new Tarea(titulo,descripcion,vista.getProyecto().devolverPersona(nombreResponsable)
+        ,prioridad,new Date(año, mes, dia),estafinalizada,resultado,facturacion,coste));
     }
 
     @Override

@@ -28,6 +28,6 @@ public interface Controlador {
     void getDatosCrearProyecto(JTextField recuadro);
     void getDatosAbrirProyecto() throws IOException, ClassNotFoundException;
     void getDatosAltaPersona();
-    void getDatosAñadirPersonaTarea() throws PersonaEsNullException, NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
-
+    void getDatosAltaTarea();
+    void getDatosAnyadirPersonaEnTarea();
 }
