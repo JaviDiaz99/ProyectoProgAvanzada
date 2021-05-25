@@ -99,12 +99,15 @@ public class ImplementacionVista implements Vista{
         ventanaAltaTarea = new VentanaDarAltaTarea(controlador);
         ventanaAñadirPersonaTarea = new VentanaAñadirPersonaTarea(controlador);
         ventanaMarcarTarea = new VentanaMarcarTarea(controlador);
+        ventanaBorrarPersonaTarea= new VentanaBorrarPersonaTarea(controlador);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.add("Alta Persona", ventanaAltaPersona);
         tabs.add("Alta tarea",ventanaAltaTarea);
         tabs.add("Añadir persona en tarea",ventanaAñadirPersonaTarea);
         tabs.add("Marcar tarea",ventanaMarcarTarea);
+        tabs.add("Borrar persona en tarea", ventanaBorrarPersonaTarea);
+
 
         ventana.add(tabs);
         ventana.pack();
