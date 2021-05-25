@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class VentanaListarTareas extends JTable {
+public class VentanaListarTareas extends JPanel{
     private JTextField tarea;
 
     VentanaListarTareas(Controlador controlador) {
         setLayout(new BorderLayout());
 
-        JTable datos = new JTable();
+        JPanel datos = new JPanel();
         datos.setLayout(new BoxLayout(datos, BoxLayout.PAGE_AXIS));
 
         tarea = creaEntrada(datos, "Nombre tarea:");
@@ -25,7 +25,7 @@ public class VentanaListarTareas extends JTable {
 
         boton.addActionListener(alta);
     }
-    private JTextField creaEntrada(JTable datos, String mensaje) {
+    private JTextField creaEntrada(JPanel datos, String mensaje) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout(4, 0));
         panel.add(new JLabel(mensaje), BorderLayout.LINE_START);
