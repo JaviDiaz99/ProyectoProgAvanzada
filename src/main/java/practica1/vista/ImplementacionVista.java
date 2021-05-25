@@ -21,6 +21,7 @@ public class ImplementacionVista implements Vista{
     private VentanaAñadirPersonaTarea ventanaAñadirPersonaTarea;
     private VentanaDarAltaTarea ventanaAltaTarea;
     private VentanaMarcarTarea ventanaMarcarTarea;
+    private VentanaBorrarPersonaTarea ventanaBorrarPersonaTarea;
 
     public void setControlador(Controlador controlador) { this.controlador = controlador; }
     public void setModelo(Modelo modelo) { this.modelo = modelo; }
@@ -78,6 +79,17 @@ public class ImplementacionVista implements Vista{
 
     @Override
     public String tituloTareaAñadirPersonaTarea() { return ventanaAñadirPersonaTarea.tituloTarea(); }
+
+    @Override
+    public String nombrePersonaBorrarPersonaTarea() {
+        return ventanaBorrarPersonaTarea.nombrePersona();
+    }
+
+    @Override
+    public String tituloTareaBorrarPersonaTarea() {
+        return ventanaBorrarPersonaTarea.tituloTarea();
+    }
+
     @Override
     public String getTituloMarcarTarea() { return ventanaMarcarTarea.tituloTarea(); }
 

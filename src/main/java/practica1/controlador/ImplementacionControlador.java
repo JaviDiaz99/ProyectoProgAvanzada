@@ -119,5 +119,12 @@ public class ImplementacionControlador implements Controlador {
         }
     }
 
+    @Override
+    public void getDatosBorrarPersonaTarea() {
+        String nombre = vista.nombrePersonaBorrarPersonaTarea();
+        String titulo = vista.tituloTareaBorrarPersonaTarea();
+
+    }
+
 
 }

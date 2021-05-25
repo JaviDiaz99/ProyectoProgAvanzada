@@ -31,4 +31,5 @@ public interface Controlador {
     void getDatosAltaTarea();
     void getDatosAnyadirPersonaEnTarea();
     void getDatosMarcarTarea();
+    void getDatosBorrarPersonaTarea();
 }
