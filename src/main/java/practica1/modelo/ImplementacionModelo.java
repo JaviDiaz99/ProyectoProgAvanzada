@@ -45,6 +45,9 @@ public class ImplementacionModelo implements Modelo {
 
     @Override
     public void añadirPersona(String nombre, String email) throws PersonaRepetidaException {
+        if ( nombre.isEmpty() || email.isEmpty() ) {
+            throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
+        }
         vista.getProyecto().añadirPersona(new Personas(nombre,email));
     }
 
@@ -66,10 +69,16 @@ public class ImplementacionModelo implements Modelo {
     @Override
     public void añadirPersonaEnTarea(String nombrePersona, String titulo) throws PersonaEsNullException,
             NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException {
+        if ( nombrePersona.isEmpty() || titulo.isEmpty() ) {
+            throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
+        }
         vista.getProyecto().introducirPersonaEnTarea(vista.getProyecto().devolverPersona(nombrePersona)
         ,vista.getProyecto().devolverTarea(titulo));
     }
     public void marcarTarea( String tituloTarea) throws TareaEsNullException {
+        if ( tituloTarea.isEmpty() ) {
+            throw new IllegalArgumentException("Los recuadros no tienen que estar vacios");
+        }
         vista.getProyecto().marcarFinalizada(vista.getProyecto().devolverTarea(tituloTarea));
     }
 }

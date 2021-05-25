@@ -30,6 +30,8 @@ public class ImplementacionControlador implements Controlador {
             modelo.añadirPersona(nombre,email);
         } catch (PersonaRepetidaException e) {
             vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
         }
     }
     public void getDatosAltaTarea() {
@@ -106,6 +108,8 @@ public class ImplementacionControlador implements Controlador {
             vista.mensajeError(e.getMessage());
         } catch (TareaEsNullException | NoExisteTareaException e ) {
             vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
         }
     }
 
@@ -115,6 +119,8 @@ public class ImplementacionControlador implements Controlador {
         try {
             modelo.marcarTarea(tituloTarea);
         } catch ( TareaEsNullException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
             vista.mensajeError(e.getMessage());
         }
     }
