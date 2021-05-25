@@ -35,5 +35,5 @@ public interface Modelo {
             NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
     void marcarTarea( String tituloTarea) throws TareaEsNullException;
     void borrarPersonaTarea(String nombrePersona, String titulo) throws PersonaEsNullException,
-            NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException;
+            NoExisteNombreException, ExistePersonaInscritaEnTareaException, TareaEsNullException, NoExisteTareaException, NoExistePersonaInscritaEnTareaException;
 }

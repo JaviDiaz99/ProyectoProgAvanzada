@@ -30,6 +30,8 @@ public class ImplementacionControlador implements Controlador {
             modelo.añadirPersona(nombre,email);
         } catch (PersonaRepetidaException e) {
             vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
         }
     }
     public void getDatosAltaTarea() {
@@ -106,6 +108,8 @@ public class ImplementacionControlador implements Controlador {
             vista.mensajeError(e.getMessage());
         } catch (TareaEsNullException | NoExisteTareaException e ) {
             vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
         }
     }
 
@@ -116,6 +120,8 @@ public class ImplementacionControlador implements Controlador {
             modelo.marcarTarea(tituloTarea);
         } catch ( TareaEsNullException e ) {
             vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
         }
     }
 
@@ -123,6 +129,19 @@ public class ImplementacionControlador implements Controlador {
     public void getDatosBorrarPersonaTarea() {
         String nombre = vista.nombrePersonaBorrarPersonaTarea();
         String titulo = vista.tituloTareaBorrarPersonaTarea();
+        try {
+            modelo.borrarPersonaTarea(nombre,titulo);
+        } catch ( PersonaEsNullException | NoExisteNombreException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch (TareaEsNullException | NoExisteTareaException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch (NoExistePersonaInscritaEnTareaException e) {
+            vista.mensajeError(e.getMessage());
+        } catch ( ExistePersonaInscritaEnTareaException e ) {
+            vista.mensajeError(e.getMessage());
+        } catch ( IllegalArgumentException e ) {
+            vista.mensajeError(e.getMessage());
+        }
 
     }
 
