@@ -42,6 +42,10 @@ public interface Vista {
     String nombreTareaCoste();
     String costeDeTarea();
 
+    String nombreListarPersonas();
+
+    String nombreListarTareas();
+
     String getTituloMarcarTarea();
 
 }

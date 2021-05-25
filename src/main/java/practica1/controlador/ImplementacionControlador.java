@@ -159,5 +159,27 @@ public class ImplementacionControlador implements Controlador {
 
     }
 
+    @Override
+    public void getDatosListarPersonas() {
+        String persona = vista.nombreListarPersonas();
+        try {
+            modelo.listarPersonas(persona);
+        } catch (PersonaEsNullException | NoExisteNombreException e) {
+            vista.mensajeError(e.getMessage());
 
+        }
+
+    }
+
+    @Override
+    public void getDatosListarTareas() {
+        String tarea = vista.nombreListarTareas();
+        try {
+            modelo.listarTareas(tarea);
+        } catch (TareaEsNullException | NoExisteTareaException e) {
+            vista.mensajeError(e.getMessage());
+
+        }
+
+    }
 }

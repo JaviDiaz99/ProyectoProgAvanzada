@@ -102,4 +102,20 @@ public class ImplementacionModelo implements Modelo {
         //vista.getProyecto().cambiarCosteTarea(vista.getProyecto().devolverTarea(nombreTarea),vista.getProyecto().);
     }
 
+    @Override
+    public void listarPersonas(String persona) throws PersonaEsNullException, NoExisteNombreException {
+        if ( persona.isEmpty()) {
+            throw new IllegalArgumentException("El recuadro no tienen que estar vacio");
+        }
+        vista.getProyecto().devolverPersona(persona);
+    }
+
+    @Override
+    public void listarTareas(String tarea) throws TareaEsNullException, NoExisteTareaException {
+        if ( tarea.isEmpty()) {
+            throw new IllegalArgumentException("El recuadro no tienen que estar vacio");
+        }
+        vista.getProyecto().devolverTarea(tarea);
+    }
+
 }
