@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 public class VentanaListarPersonas extends JPanel{
     private JTextField nombre;
+    private JTable tabla;
+    private JScrollPane sp;
 
     VentanaListarPersonas(Controlador controlador) {
         setLayout(new BorderLayout());
